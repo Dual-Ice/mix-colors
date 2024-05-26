@@ -16,6 +16,7 @@
 		D9688DA62C00DE030068A41C /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9688DA52C00DE030068A41C /* ColorsView.swift */; };
 		D9688DA92C00E0B30068A41C /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9688DA82C00E0B30068A41C /* ColorView.swift */; };
 		D9D1B7EE2C03B777006FD143 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D1B7ED2C03B777006FD143 /* ColorViewController.swift */; };
+		D9D1B7F02C03DB22006FD143 /* ColorNameTranslator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D1B7EF2C03DB22006FD143 /* ColorNameTranslator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		D9688DA52C00DE030068A41C /* ColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsView.swift; sourceTree = "<group>"; };
 		D9688DA82C00E0B30068A41C /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		D9D1B7ED2C03B777006FD143 /* ColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
+		D9D1B7EF2C03DB22006FD143 /* ColorNameTranslator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorNameTranslator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				D9688D9A2C00DCB30068A41C /* Assets.xcassets */,
 				D9688D9C2C00DCB30068A41C /* LaunchScreen.storyboard */,
 				D9688D9F2C00DCB30068A41C /* Info.plist */,
+				D9D1B7EF2C03DB22006FD143 /* ColorNameTranslator.swift */,
 			);
 			path = "Mix-colors";
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9688DA62C00DE030068A41C /* ColorsView.swift in Sources */,
+				D9D1B7F02C03DB22006FD143 /* ColorNameTranslator.swift in Sources */,
 				D9688D962C00DCB10068A41C /* ColorsViewController.swift in Sources */,
 				D9688D922C00DCB10068A41C /* AppDelegate.swift in Sources */,
 				D9688D942C00DCB10068A41C /* SceneDelegate.swift in Sources */,

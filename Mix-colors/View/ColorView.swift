@@ -13,12 +13,13 @@ protocol ColorViewDelegate: AnyObject {
 
 final class ColorView: UIView {
     
+    private let translator = ColorNameTranslator()
+    
     private let button: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
         
         button.layer.borderColor = UIColor.systemGray.cgColor
-        button.layer.borderWidth = 1
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -34,8 +35,13 @@ final class ColorView: UIView {
     var color: UIColor = .clear {
         didSet {
             button.backgroundColor = color
-            button.layer.borderWidth = 0
-            label.text = color.accessibilityName
+            updateLabelText()
+        }
+    }
+    
+    var language: Language = Language.english {
+        didSet {
+            updateLabelText()
         }
     }
     
@@ -87,6 +93,15 @@ extension ColorView {
     
     private func setActions() {
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    private func updateLabelText() {
+        switch language {
+            case .english:
+                label.text = color.accessibilityName
+            case .russian:
+                label.text = translator.translateString(color.accessibilityName)
+        }
     }
     
     @objc private func buttonTapped() {

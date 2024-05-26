@@ -7,6 +7,20 @@
 
 import UIKit
 
+enum Language: Int {
+    case english = 0
+    case russian = 1
+    
+    var stringValue: String {
+        switch self {
+        case .english:
+            return "ENG"
+        case .russian:
+            return "RU"
+        }
+    }
+}
+
 final class ColorsView: UIView {
     private let title: UILabel = {
         let label = UILabel()
@@ -33,6 +47,13 @@ final class ColorsView: UIView {
         return label
     }()
     
+    private let segmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl(items: [Language.english.stringValue, Language.russian.stringValue])
+       control.selectedSegmentIndex = Language.english.rawValue
+       control.translatesAutoresizingMaskIntoConstraints = false
+       return control
+    }()
+    
     private var firstColorView = ColorView(isInteractive: true)
     private var secondColorView = ColorView(isInteractive: true)
     private var resultColorView = ColorView(isInteractive: false)
@@ -41,7 +62,7 @@ final class ColorsView: UIView {
         super.init(frame: frame)
         setViews()
         layoutViews()
-        
+        setActions()
     }
 
     required init?(coder: NSCoder) {
@@ -68,6 +89,7 @@ extension ColorsView {
         self.backgroundColor = UIColor.systemGray6
         [
             title,
+            segmentedControl,
             firstColorView,
             plusLabel,
             secondColorView,
@@ -83,6 +105,9 @@ extension ColorsView {
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 28),
             title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            
+            segmentedControl.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 28),
+            segmentedControl.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -10),
             
             firstColorView.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 40),
             firstColorView.widthAnchor.constraint(equalToConstant: 100),
@@ -105,5 +130,23 @@ extension ColorsView {
             resultColorView.heightAnchor.constraint(equalToConstant: 120),
             resultColorView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
         ])
+    }
+    
+    func setActions() {
+        segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+    }
+    
+    @objc private func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        guard let selectedLanguage = Language(rawValue: sender.selectedSegmentIndex) else {
+            return
+        }
+        
+        [
+            firstColorView,
+            secondColorView,
+            resultColorView
+        ].forEach{
+            $0.language = selectedLanguage
+        }
     }
 }
